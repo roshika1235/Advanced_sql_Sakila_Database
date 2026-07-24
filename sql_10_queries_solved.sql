@@ -80,6 +80,13 @@ JOIN inventory i ON lr.inventory_id = i.inventory_id
 JOIN film f ON i.film_id = f.film_id;
 
 # 10. which movies are not retured yet?
+# movies (film) -> film_id,title      rental(inventory_id,return_date)  -> inventory (inventory_id , film_id)
+
+select distinct f.title 
+from film f , rental r, inventory i 
+where r.inventory_id = i.inventory_id 
+and i.film_id = f.film_id 
+and r.return_date is null;
 
 # mis_2 : how much money and rentals we make for store 1 by day?
 # mis_3 : top 3 earning days so far?
